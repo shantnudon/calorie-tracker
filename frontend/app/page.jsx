@@ -33,16 +33,13 @@ export default function Home() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await fetch('https://6969-monospace-calorie-tracker-1714928815393.cluster-y34ecccqenfhcuavp7vbnxv7zk.cloudworkstations.dev/insertDataDon', {
+      const response = await fetch('http://localhost:6969/insertDataDon', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
       });
-
-
-    
   }
    catch (error) {
     console.error('Error:', error.message);
