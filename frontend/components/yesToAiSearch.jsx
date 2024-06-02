@@ -4,20 +4,16 @@ import { useState } from "react";
 import Loading from "@/components/loader";
 import { useForm } from "react-hook-form";
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
 
 const Hero = () => {
   const [input, setInput] = useState("");
   const [foodResult, setFoodResult] = useState(null);
   const [searching, setSearching] = useState(false);
 
-
   const notify = () => toast("Wow so easy !");
-
-
 
   const {
     register,
@@ -62,7 +58,7 @@ const Hero = () => {
               onChange={(e) => setInput(e.target.value)}
               type="text"
               placeholder="Search"
-              className="py-2 px-3  rounded-md mx-3"
+              className="py-2 px-3 rounded-md mx-3"
             />
             <input
               type="submit"
@@ -149,7 +145,6 @@ const Hero = () => {
           </div>
         )}
       </div>
-
     </section>
   );
 };
