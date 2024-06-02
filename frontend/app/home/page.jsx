@@ -24,7 +24,8 @@ function AuthForm() {
         headers: {
           "Content-Type": "application/json; charset=utf-8",
         },
-        body:  data,
+        body: JSON.stringify(data),
+        cache: "default",
       });
       const responseData = await response.json();
       console.log(responseData); 
