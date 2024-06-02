@@ -17,7 +17,7 @@ function AuthForm() {
   };
 
   const dataGaya = async (url, data) => {
-    console.log(data)
+    // console.log(data)
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -25,14 +25,19 @@ function AuthForm() {
           "Content-Type": "application/json; charset=utf-8",
         },
         body: JSON.stringify(data),
+<<<<<<< HEAD
         cache: "default",
+=======
+>>>>>>> a844950bc4e9de51520bfd11a2883bc61302ea69
       });
       const responseData = await response.json();
-      console.log(responseData); 
+      // console.log(responseData); 
+      localStorage.setItem("authToken",responseData.authToken)
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
 
   const onSubmitLogin = async (data) => {
     const url = "http://localhost:6969/loginUser"; // Adjust URL as needed
@@ -49,33 +54,33 @@ function AuthForm() {
         return (
           <>
             <form onSubmit={handleSubmit(onSubmitLogin)}>
-              <div class="p-4 text-2xl">
-                <div class="flex flex-col items-start w-full">
-                  <label for="email" class="text-[#009959] font-semibold">
+              <div className="p-4 text-2xl">
+                <div className="flex flex-col items-start w-full">
+                  <label htmlFor="email" className="text-[#009959] font-semibold">
                     Email
                   </label>
                   <input
                     {...register("email")}
                     type="email"
                     placeholder="Enter Your Email"
-                    class="w-full py-px pl-0 bg-transparent outline-none focus:ring-0 border-0 border-b-2 border-white mb-2 placeholder:text-[#009959] focus:outline-none text-[#009959] placeholder:text-base"
+                    className="w-full py-px pl-0 bg-transparent outline-none focus:ring-0 border-0 border-b-2 border-white mb-2 placeholder:text-[#009959] focus:outline-none text-[#009959] placeholder:text-base"
                   />
                 </div>
-                <div class="flex flex-col items-start w-full">
-                  <label for="password" class=" text-[#009959] font-semibold">
+                <div className="flex flex-col items-start w-full">
+                  <label htmlFor="password" className=" text-[#009959] font-semibold">
                     Password
                   </label>
                   <input
                     {...register("password")}
                     type="password"
                     placeholder="Enter Your Password"
-                    class="w-full py-px pl-0 bg-transparent outline-none focus:ring-0 border-0 border-b-2 border-white mb-2 placeholder:text-[#009959] focus:outline-none text-[#009959] placeholder:text-base"
+                    className="w-full py-px pl-0 bg-transparent outline-none focus:ring-0 border-0 border-b-2 border-white mb-2 placeholder:text-[#009959] focus:outline-none text-[#009959] placeholder:text-base"
                   />
                 </div>
                 <div className="flex">
                   <input
                     type="submit"
-                    class="cursor-pointer text-lg my-2 transition-all bg-blue-500 text-white p-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
+                    className="cursor-pointer text-lg my-2 transition-all bg-blue-500 text-white p-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
                   />
                 </div>
               </div>
@@ -86,44 +91,44 @@ function AuthForm() {
         return (
           <>
           <form onSubmit={handleSubmit(onSubmitRegister)}>
-              <div class="p-4 text-2xl">
-                <div class="flex flex-col items-start w-full">
-                  <label for="name" class=" text-[#009959] font-semibold">
+              <div className="p-4 text-2xl">
+                <div className="flex flex-col items-start w-full">
+                  <label htmlFor="name" className=" text-[#009959] font-semibold">
                     Name
                   </label>
                   <input
                     {...register("name")}
                     type="text"
                     placeholder="Enter Your Name"
-                    class="w-full py-px pl-0 bg-transparent outline-none focus:ring-0 border-0 border-b-2 border-white mb-2 placeholder:text-[#009959] focus:outline-none text-[#009959] placeholder:text-base"
+                    className="w-full py-px pl-0 bg-transparent outline-none focus:ring-0 border-0 border-b-2 border-white mb-2 placeholder:text-[#009959] focus:outline-none text-[#009959] placeholder:text-base"
                   />
                 </div>
-                <div class="flex flex-col items-start w-full">
-                  <label for="email" class="text-[#009959] font-semibold">
+                <div className="flex flex-col items-start w-full">
+                  <label htmlFor="email" className="text-[#009959] font-semibold">
                     Email
                   </label>
                   <input
                     {...register("email")}
                     type="email"
                     placeholder="Enter Your Email"
-                    class="w-full py-px pl-0 bg-transparent outline-none focus:ring-0 border-0 border-b-2 border-white mb-2 placeholder:text-[#009959] focus:outline-none text-[#009959] placeholder:text-base"
+                    className="w-full py-px pl-0 bg-transparent outline-none focus:ring-0 border-0 border-b-2 border-white mb-2 placeholder:text-[#009959] focus:outline-none text-[#009959] placeholder:text-base"
                   />
                 </div>
-                <div class="flex flex-col items-start w-full">
-                  <label for="password" class=" text-[#009959] font-semibold">
+                <div className="flex flex-col items-start w-full">
+                  <label htmlFor="password" className=" text-[#009959] font-semibold">
                     Password
                   </label>
                   <input
                     {...register("password")}
                     type="password"
                     placeholder="Enter Your Password"
-                    class="w-full py-px pl-0 bg-transparent outline-none focus:ring-0 border-0 border-b-2 border-white mb-2 placeholder:text-[#009959] focus:outline-none text-[#009959] placeholder:text-base"
+                    className="w-full py-px pl-0 bg-transparent outline-none focus:ring-0 border-0 border-b-2 border-white mb-2 placeholder:text-[#009959] focus:outline-none text-[#009959] placeholder:text-base"
                   />
                 </div>
                 <div className="flex">
                   <input
                     type="submit"
-                    class="cursor-pointer text-lg my-2 transition-all bg-blue-500 text-white p-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
+                    className="cursor-pointer text-lg my-2 transition-all bg-blue-500 text-white p-2 rounded-lg border-blue-600 border-b-[4px] hover:brightness-110 hover:-translate-y-[1px] hover:border-b-[6px] active:border-b-[2px] active:brightness-90 active:translate-y-[2px]"
                   />
                 </div>
               </div>

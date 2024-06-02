@@ -86,7 +86,7 @@ const Hero = () => {
             <form onSubmit={handleSubmit((data) => console.log(data))}>
               <div className="flex flex-col text-3xl ">
                 <div className="flex justify-between">
-                  <label htmlFor="">Calories:</label>
+                  <label htmlhtmlFor="">Calories:</label>
                   <input
                     {...register("calories")}
                     id="calories"
@@ -95,7 +95,7 @@ const Hero = () => {
                   />
                 </div>
                 <div className="flex justify-between">
-                  <label htmlFor="">Carb:</label>
+                  <label htmlhtmlFor="">Carb:</label>
                   <input
                     {...register("carb")}
                     id="carb"
@@ -104,7 +104,7 @@ const Hero = () => {
                   />
                 </div>
                 <div className="flex justify-between">
-                  <label htmlFor="">Protien: </label>
+                  <label htmlhtmlFor="">Protien: </label>
                   <input
                     {...register("protien")}
                     id="protien"
@@ -113,7 +113,7 @@ const Hero = () => {
                   />
                 </div>
                 <div className="flex justify-between">
-                  <label htmlFor="">Total Fat: </label>
+                  <label htmlhtmlFor="">Total Fat: </label>
                   <input
                     {...register("fat")}
                     id="fat"
