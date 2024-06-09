@@ -85,9 +85,7 @@ app.post("/insertDataDon", async (req, res) => {
     const doc = new dataInsertionModel({ calorie, protein, fat, carb });
     const result = await doc.save();
     // console.log("Document inserted:", result._id);
-    res
-      .status(201)
-      .json({ message: "Document inserted successfully"});
+    res.status(201).json({ message: "Document inserted successfully" });
   } catch (err) {
     console.error("Error occurred while inserting document", err);
     res.status(500).json({ error: "Internal server error" });
@@ -110,9 +108,7 @@ app.post("/registerUser", async (req, res) => {
     });
     const resultUser = await doc.save();
     // console.log("User Created successfully:", resultUser._id);
-    res
-      .status(201)
-      .json({ message: "User Created successfully"});
+    res.status(201).json({ message: "User Created successfully" });
   } catch (err) {
     console.error("Error occurred while inserting document", err);
     res.status(500).json({ error: "Internal server error" });
@@ -129,26 +125,72 @@ app.post("/loginUser", async (req, res) => {
     if (!existingUser) {
       return res.status(401).json({ error: "User doesn't exists!" });
     }
-    const isPasswordValid = await bcrypt.compare(password, existingUser.password);
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      existingUser.password
+    );
     if (!isPasswordValid) {
       return res.status(401).json({ error: "Incorrect Password.." });
     }
     const authToken = generateUserToken(existingUser);
-    res.json({ authToken });
+    console.log(authToken);
+    console.log(email);
+    return res.status(200).json({ authToken: authToken, email: email });
   } catch (error) {
     res.status(501).json({ error: "Invalid Credentials!!" });
   }
 });
 
-
 app.get("/getData", async (req, res) => {
-  try {
-    const data = await dataInsertionModel.find();
-    res.json(data);
-  } catch (error) {
-    console.error("Error occurred while fetching data", error);
-    res.status(500).json({ error: "Internal server error" });
+  // return console.log(req.header);
+  const authHeader = req.header("Authorization");
+  if (!authHeader) {
+    return res
+      .status(401)
+      .json({ message: "Unauthorized : Missing Auth token" });
   }
+
+  // const [bearer, token] = authHeader.split(" ");
+
+  // if (bearer !== "Bearer" || token) {
+  //   return res
+  //     .status(401)
+  //     .json({ message: "Unauthorized : Invalid token format" });
+  // }
+  jwt.verify(authHeader, secretKey, async () => {
+    // console.log(data)
+    if (error) {
+      console.log(error);
+      return res.status(403).json({ message: "Forbidden : Invalid token" });
+    }
+    try {
+      const data = await dataInsertionModel.find();
+      res.json(data);
+    } catch (error) {
+      console.error("Error occurred while fetching data", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+});
+
+app.post("/authChalak", async (req, res, next) => {
+  const chacha = req.body.authToken;
+  const userEmailFromRequest = req.body.email;
+
+  if (!chacha || !userEmailFromRequest) {
+    return res.status(401).json({ message: "Missing authToken or email" , status : "401" });
+  }
+
+  jwt.verify(chacha, secretKey, (error, decode) => {
+    if (error) {
+      return res.status(401).json({ message: "Invalid authToken", status : "401"  });
+    }
+    const userEmailFromToken = decode.email;
+    if (userEmailFromToken !== userEmailFromRequest) {
+      return res.status(401).json({ message: "Email does not match", status : "401" });
+    }
+    return res.status(200).json({ message: "Authentication successful", status : "200"  });
+  });
 });
 
 app.get("/getData/:id", async (req, res) => {

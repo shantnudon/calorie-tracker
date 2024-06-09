@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Toaster } from 'sonner'
 
 export const metadata = {
   title: "Calorie Tracker App",
@@ -8,7 +9,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body><Toaster richColors/>{children}</body>
     </html>
   );
 }
