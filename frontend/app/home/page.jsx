@@ -50,7 +50,7 @@ export default function Home() {
         <NavM />
         <div className="grid grid-cols-2">
           <div className="border-2 border-bg-white">
-            <Circle value={99} />
+            <Circle value={56} />
           </div>
           <div className="border-2 border-bg-white">total all consumed</div>
           <div className="border-2 border-bg-white">
